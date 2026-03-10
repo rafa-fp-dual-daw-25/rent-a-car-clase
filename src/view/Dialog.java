@@ -2,6 +2,7 @@ package view;
 
 import controller.ClientController;
 import model.Client;
+import repository.ModelRepository;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -10,7 +11,20 @@ public class Dialog {
 
 
     private Scanner scanner;
+    private ClientDialog clientDialog;
+    private ModelDialog modelDialog;
+    private RentalOfficeDialog rentalOfficeDialog;
+    private CarDialog carDialog;
+
     public Dialog() {
+        clientDialog = new ClientDialog();
+        modelDialog = new ModelDialog();
+        rentalOfficeDialog = new RentalOfficeDialog();
+        carDialog = new CarDialog();
+        clientDialog.addInitialClients();
+        modelDialog.addInitialModels();
+        rentalOfficeDialog.addInitialRentalOffices();
+        carDialog.addInitialCars();
 
     }
 
@@ -29,7 +43,7 @@ public class Dialog {
                 if (choice == 1) {
                     clientManager();
                 } else if (choice == 2) {
-                    //TODO
+                    CarManager();
                 } else if (choice == 3) {
                     rentalOfficeManager();
                 } else if (choice == 4) {
@@ -54,18 +68,20 @@ public class Dialog {
     }
 
     public void clientManager(){
-        ClientDialog clientDialog = new ClientDialog();
         clientDialog.getStarted();
     }
 
     public void modelManager(){
-        ModelDialog modelDialog = new ModelDialog();
         modelDialog.getStarted();
     }
 
     public void rentalOfficeManager(){
-        RentalOfficeDialog rentalOfficeDialog = new RentalOfficeDialog();
+
         rentalOfficeDialog.getStarted();
+    }
+
+    public void CarManager(){
+        carDialog.getStarted();
     }
 
 
