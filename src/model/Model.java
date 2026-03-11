@@ -1,9 +1,12 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Model {
     private Long id;
     private String name;
     private int pricePerDay;
+    private ArrayList<Car> cars = new ArrayList<>();
 
     public Model(Long id, String name, int pricePerDay) {
         this.id = id;
@@ -14,6 +17,10 @@ public class Model {
     public Model(String name, int pricePerDay) {
         this.name = name;
         this.pricePerDay = pricePerDay;
+    }
+
+    public void addCar(Car car) {
+        this.cars.add(car);
     }
 
     public Long getId() {

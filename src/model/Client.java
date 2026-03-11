@@ -1,10 +1,13 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Client {
     private Long id;
     private String dni;
     private String name;
     private String surname;
+    private ArrayList<Rental> rentals = new ArrayList<>();
 
     public Client(Long id, String dni, String name, String surname) {
         this.id = id;
@@ -17,6 +20,14 @@ public class Client {
         this.dni = dni;
         this.name = name;
         this.surname = surname;
+    }
+
+    public ArrayList<Rental> getRentals() {
+        return rentals;
+    }
+
+    public void addRental(Rental rental) {
+        this.rentals.add(rental);
     }
 
     public Long getId() {

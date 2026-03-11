@@ -1,10 +1,13 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Car {
     private Long id;
     private String licensePlate;
     private Model model;
     private RentalOffice rentalOffice;
+    private ArrayList<Rental> rentals = new ArrayList<>();
 
     public Car(Long id, String licensePlate, Model model, RentalOffice rentalOffice) {
         this.id = id;
@@ -19,6 +22,13 @@ public class Car {
         this.rentalOffice = rentalOffice;
     }
 
+    public ArrayList<Rental> getRentals() {
+        return rentals;
+    }
+
+    public void addRental(Rental rental) {
+        this.rentals.add(rental);
+    }
 
     public Long getId() {
         return id;
@@ -54,6 +64,6 @@ public class Car {
 
     @Override
     public String toString() {
-        return id + " " + licensePlate + " " + model.getName() ;
+        return id + " " + licensePlate + " " + model.getName();
     }
 }

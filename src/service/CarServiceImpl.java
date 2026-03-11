@@ -1,13 +1,14 @@
 package service;
 
 import model.Car;
+import model.Model;
 import model.RentalOffice;
 import repository.CarRepository;
 import repository.ICarRepository;
 
 import java.util.ArrayList;
 
-public class CarServiceImpl implements ICarService{
+public class CarServiceImpl implements ICarService {
 
     private ICarRepository repository;
     private IModelService modelService;
@@ -22,7 +23,11 @@ public class CarServiceImpl implements ICarService{
     public void add(String licensePlate, Long idModel, Long idRentalOffice) {
         Car car = new Car(licensePlate, modelService.findById(idModel), rentalOfficeService.findById(idRentalOffice));
         repository.add(car);
-        RentalOffice rentalOffice= rentalOfficeService.findById(idRentalOffice);
+
+        Model model = modelService.findById(idModel);
+        model.addCar(car);
+        
+        RentalOffice rentalOffice = rentalOfficeService.findById(idRentalOffice);
         rentalOffice.addCar(car);
     }
 
@@ -33,7 +38,6 @@ public class CarServiceImpl implements ICarService{
     public ArrayList findAll() {
         return repository.findAll();
     }
-
 
 
     public Car findById(Long id) {
